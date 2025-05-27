@@ -1,0 +1,28 @@
+# PyCharm IDE-specific files
+.idea/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment folders
+venv/
+env/
+.venv/
+*/venv/
+*/env/
+*/.venv/
+
+# Operating System-specific files
+.DS_Store
+Thumbs.db
+
+# Data and sensitive files
+/data/
+*.csv
+*.db
+*.sqlite3
+.env
+secrets.ini
