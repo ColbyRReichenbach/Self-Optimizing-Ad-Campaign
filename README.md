@@ -1,59 +1,83 @@
-# Project: Self-Optimizing Ad Campaign with a Multi-Armed Bandit
+# Project: Advanced Ad Campaign Optimization with Multi-Armed Bandits
 
-**Live App:** [Need to upload to community]
+**Live App:** [waiting to upload to cloud for link]
 
-> An interactive web application that simulates and visualizes how a Reinforcement Learning agent (a Thompson Sampling Bandit) can outperform traditional A/B testing in real-time to maximize advertising ROI.
-
-**(Optional but HIGHLY recommended: Insert a GIF of your Streamlit app in action here. It's incredibly effective.)**
+*An interactive web application that simulates and visualizes how a Reinforcement Learning agent (a Thompson Sampling Bandit) consistently outperforms traditional A/B testing in real-time to maximize advertising ROI, with results aggregated over multiple simulation runs for statistical robustness.*
 
 ---
 
-## 1. Problem Statement
+## 1. Project Evolution & Motivation
 
-In a previous project, Ad Performance Analysis with A/B Testing, I analyzed historical campaign data to identify a winning ad using traditional statistical methods.
+This project builds upon insights gained from a previous analysis of traditional A/B testing for ad performance. In my earlier work, **[Ad Performance Analysis with A/B Testing](https://github.com/ColbyRReichenbach/Ad-Performance-Analysis-AB-Testing)**, I utilized statistical methods to analyze ad campaign performance.
 
-While effective, that analysis revealed a key business problem: standard A/B testing is inherently inefficient. It requires 
+While that approach effectively identified top campaigns retrospectively, it highlighted a core inefficiency: traditional A/B tests inherently require a fixed "exploration" period where significant budget is spent on underperforming ad variants. This realization sparked the central question for the current project: **Could a machine learning system learn and adapt in real-time to minimize this wasted ad spend and discover the optimal creative more efficiently?**
 
-a fixed testing period where 50% of the budget is spent on the eventual losing ad. This project is the solution. It explores 
+## 2. Problem Statement
 
-if a reinforcement learning approach can find the winner faster and more profitably by dynamically allocating budget to the 
+The primary challenge addressed here is the inefficiency of traditional A/B testing in dynamic advertising environments. Key limitations of standard A/B tests include:
+* **Opportunity Cost:** Significant ad spend is allocated to less effective ad creatives during the fixed testing duration.
+* **Slow Adaptation:** A/B tests are not designed to react to changes in ad performance or market dynamics once the test is underway.
+* **Delayed Optimization:** Decisions to shift budget to the winning ad can only be made after the testing period concludes and statistical significance is reached.
 
-best-performing creative in real-time.
-## 2. Solution Overview
+This project seeks to demonstrate a more agile and profitable approach using a Multi-Armed Bandit algorithm.
 
-I built a simulation environment in Python to test a **Multi-Armed Bandit** algorithm, a concept from reinforcement learning, against a traditional A/B test.
+## 3. Solution Overview
 
-* The **Thompson Sampling Bandit** updates its beliefs about each ad's performance after every impression.
-* It dynamically allocates more traffic to the ads that are performing better, balancing the need to explore new options with exploiting known winners.
-* The entire simulation is wrapped in an interactive **Streamlit** dashboard for analysis and visualization.
+This project implements and evaluates a **Multi-Armed Bandit** algorithm (specifically, Thompson Sampling) against a traditional A/B test within a simulated advertising environment.
 
-## 3. Key Results & Insights
+Key components of the solution:
+* A **Python-based simulation** defines multiple ad creatives, each with a distinct (but initially unknown to the algorithm) true click-through rate (CTR).
+* The **Thompson Sampling Bandit** dynamically updates its beliefs about each ad's performance after every impression.
+* It intelligently allocates more traffic to ads that demonstrate higher performance, balancing exploration of new options with exploitation of known winners.
+* To ensure conclusions, the entire simulation campaign is **run multiple times (user-configurable)**.
+* The aggregated results are presented in an interactive **Streamlit** dashboard, showcasing average performance and variability.
 
-The simulation results clearly demonstrate the superiority of the bandit algorithm.
-* Over 1,000,000 impressions, the Thompson Sampling bandit achieved a **9.1% lift in total clicks** compared to the A/B test.
-* The bandit's final click-through rate was **1.87%**, significantly higher than the A/B test's **1.71%**, and much closer to the true CTR of the best-performing ad (2.1%).
-* The "Cumulative Clicks" chart below visualizes this outperformance, where the growing gap between the lines represents tangible value gained by using the smarter algorithm.
+## 4. Key Features
 
-## 4. Tech Stack
+* Interactive Streamlit Dashboard for running and visualizing simulations.
+* Side-by-side comparison of a Thompson Sampling Bandit and a traditional A/B Test.
+* Configurable number of simulation runs for statistical analysis.
+* Calculation and display of average performance metrics (Total Clicks, Click-Through Rate, Percentage Lift) across all runs.
+* Visualization of performance variability using standard deviation bands on the main comparative chart.
+* Breakdown of average impression allocation and final algorithmic beliefs (Beta distributions based on average outcomes).
 
+## 5. Methodology
+
+**Thompson Sampling:** This Bayesian algorithm treats each ad creative as an "arm" of a multi-armed bandit. For each arm, it maintains a Beta distribution representing the current belief about its true CTR (parameterized by observed successes/clicks and failures/non-clicks). To choose an ad, it samples from each arm's Beta distribution and selects the arm with the highest sampled value. This naturally balances exploration (giving chances to arms with higher uncertainty) and exploitation (favoring arms with a high proven success rate).
+
+**A/B Testing Simulation:** The A/B test serves as a baseline, allocating an equal number of impressions to each ad creative throughout the simulation.
+
+**Statistical Robustness:** To account for the stochastic nature of individual simulation runs, the core experiment is executed multiple times. Performance metrics are then averaged, and standard deviations are calculated and visualized. This provides a much more reliable understanding of each strategy's true effectiveness and consistency.
+
+## 6. Key Results & Insights
+
+The simulation, **averaged over [Your Number, e.g., 100] runs with [Your Impressions per Run, e.g., 5,000] impressions each**, consistently demonstrates the bandit algorithm's superiority.
+
+* On average, the Thompson Sampling bandit achieved an **[need to run simulations for avg] lift in total clicks** compared to the traditional A/B test.
+* The bandit's average final click-through rate was **[need to run simulations for avg]**, significantly higher than the A/B test's **[need to run simulations for avg]**, and much closer to the true CTR of the best-performing ad (2.1% in our defined scenario).
+* The chart below illustrates the average cumulative clicks for both strategies, with shaded areas representing +/- one standard deviation, highlighting the consistent outperformance of the bandit strategy.
+
+The analysis of the average Beta distributions at the end of the simulations shows that the Thompson Sampling algorithm correctly identifies and converges on the best-performing ad with high confidence and less wasted exploration compared to the fixed A/B test.
+
+## 7. Tech Stack
 * **Language:** Python
-* **Libraries:** Streamlit, Pandas, NumPy, SciPy, Matplotlib
-* **Core Concepts:** Reinforcement Learning (Multi-Armed Bandits), Bayesian Statistics (Beta Distributions), A/B Testing, Simulation
+* **Core Libraries:** Streamlit, Pandas, NumPy, SciPy (for `scipy.stats.beta`), Matplotlib
+* **Core Concepts:** Reinforcement Learning (Multi-Armed Bandits), Bayesian Statistics (Beta Distributions), A/B Testing, Monte Carlo Simulation, Statistical Significance, Marketing Analytics.
 
-## 5. Project Setup & Usage
+## 8. Project Setup & Usage
 
-This project is containerized in a reproducible environment.
+This project is designed to be run locally using the provided environment configuration.
 
 **To run this app locally:**
 1.  Clone the repository:
     ```bash
-    git clone [https://github.com/ColbyRReichenbach/Self-Optimizing-Ad-Campaign](https://github.com/ColbyRReichenbach/Self-Optimizing-Ad-Campaign)
+    git clone [https://github.com/ColbyRReichenbach/ad-optimization-bandit.git](https://github.com/ColbyRReichenbach/ad-optimization-bandit.git) 
     cd ad-optimization-bandit
     ```
 2.  Set up the Conda environment:
     ```bash
-    # Create the environment from the requirements file
-    conda create --name bandit-env python=3.9
+    # Ensure you have Anaconda or Miniconda installed
+    conda create --name bandit-env python=3.9 # Or your preferred Python version
     conda activate bandit-env
     pip install -r requirements.txt
     ```
@@ -61,4 +85,6 @@ This project is containerized in a reproducible environment.
     ```bash
     streamlit run app.py
     ```
-    The application will open in your web browser.
+    The application will open in your web browser, allowing you to configure and run the simulations.
+
+---
