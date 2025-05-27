@@ -15,7 +15,7 @@ from bandit import ThompsonSamplingBandit
 st.set_page_config(layout="wide", page_title="Ad Creative Optimization")
 
 # --- Main App Title ---
-st.title("🚀 Real-Time Ad Optimization: Multi-Armed Bandits vs. A/B Testing")
+st.title("Real-Time Ad Optimization: Multi-Armed Bandits vs. A/B Testing")
 st.markdown("""
 This dashboard simulates a real-time ad campaign to compare two optimization strategies.
 * **A/B Test:** A traditional approach that splits traffic evenly.
@@ -73,7 +73,7 @@ def run_simulation(creatives, total_impressions):
 
         # Track bandit results
         bandit_impressions[chosen_ad_bandit.creative_id] += 1
-        bandit_clicks[chosen_ad_bandit.creative_id] += 1
+        bandit_clicks[chosen_ad_bandit.creative_id] += reward_bandit
         bandit_history.append(sum(bandit_clicks.values()))
 
         # --- A/B Test's Turn ---
@@ -83,7 +83,7 @@ def run_simulation(creatives, total_impressions):
 
         # Track A/B test results
         ab_impressions[ad_to_show_ab.creative_id] += 1
-        ab_clicks[ad_to_show_ab.creative_id] += 1
+        ab_clicks[ad_to_show_ab.creative_id] += reward_ab
         ab_history.append(sum(ab_clicks.values()))
 
     return bandit_impressions, bandit_clicks, bandit_history, ab_impressions, ab_clicks, ab_history
@@ -128,7 +128,7 @@ if st.sidebar.button("Run Simulation"):
         "*The growing gap between the lines represents the **extra clicks gained** by using the smarter bandit algorithm.*")
 
     st.markdown("---")
-    st.header("⚙️ How the Bandit Learned")
+    st.header("How the Bandit Learned")
 
     # --- Behind the Scenes Charts ---
     col_dist, col_impressions = st.columns(2)
