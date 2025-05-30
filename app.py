@@ -187,7 +187,7 @@ if st.sidebar.button("Run Multiple Simulations"):
 
     st.markdown("---")
     st.header(
-        "Detailed Breakdown")  # This section needs more thought for aggregated display
+        "Detailed Breakdown (Averages from Last Run - Needs Update for Averages")  # This section needs more thought for aggregated display
 
     # --- Behind the Scenes Charts (Updated for Averages) ---
     # For simplicity, we'll calculate average impressions and clicks per ad
