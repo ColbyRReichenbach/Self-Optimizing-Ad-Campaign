@@ -187,11 +187,9 @@ if st.sidebar.button("Run Multiple Simulations"):
 
     st.markdown("---")
     st.header(
-        "Detailed Breakdown (Averages from Last Run - Needs Update for Averages)")  # This section needs more thought for aggregated display
+        "Detailed Breakdown (Averages from Last Run)")
 
     # --- Behind the Scenes Charts (Updated for Averages) ---
-    # For simplicity, we'll calculate average impressions and clicks per ad
-    # This part requires careful aggregation from the list of dictionaries
 
     # Calculate average impressions per ad for Bandit
     avg_b_impressions_per_ad = {ad_id: 0 for ad_id in ad_names.keys()}
