@@ -136,7 +136,7 @@ if st.sidebar.button("Run Multiple Simulations"):
     mean_ab_clicks_hist = np.mean(np_ab_histories, axis=0)
     std_ab_clicks_hist = np.std(np_ab_histories, axis=0)
 
-    st.header("📈 Aggregated Performance Results")
+    st.header("Aggregated Performance Results")
     st.markdown(f"*Based on **{num_simulations_to_run}** simulation runs of **{num_impressions}** impressions each.*")
     st.markdown("---")
 
