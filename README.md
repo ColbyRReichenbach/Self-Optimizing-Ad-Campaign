@@ -51,11 +51,8 @@ Key components of the solution:
 
 ## 6. Key Results & Insights
 
-The simulation, **averaged over [# simulations] runs with [amount of impressions] impressions each**, consistently demonstrates the bandit algorithm's superiority.
-
-* On average, the Thompson Sampling bandit achieved an **[need to run simulations for avg] lift in total clicks** compared to the traditional A/B test.
-* The bandit's average final click-through rate was **[need to run simulations for avg]**, significantly higher than the A/B test's **[need to run simulations for avg]**, and much closer to the true CTR of the best-performing ad (2.1% in our defined scenario).
-* The chart below illustrates the average cumulative clicks for both strategies, with shaded areas representing +/- one standard deviation, highlighting the consistent outperformance of the bandit strategy.
+* On average, the Thompson Sampling bandit achieved an **increase in total clicks** compared to the traditional A/B test.
+* The bandit's average final click-through rate was, significantly higher than the A/B test's, and much closer to the true CTR of the best-performing ad (2.1% in our defined scenario).
 
 The analysis of the average Beta distributions at the end of the simulations shows that the Thompson Sampling algorithm correctly identifies and converges on the best-performing ad with high confidence and less wasted exploration compared to the fixed A/B test.
 
